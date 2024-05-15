@@ -7,9 +7,13 @@ const Container = ({maxWidth, type = "div", style = {}, children}) => {
 	}
 
 	let ContainerType = componentTypes[type] || <div></div>;
+	const containerStyles = {
+		maxWidth: maxWidth,
+		...style,
+	};
 
 	return (
-		<ContainerType style={style}>
+		<ContainerType style={containerStyles}>
 			{children}
 		</ContainerType>
 	);	
