@@ -1,9 +1,9 @@
-import App from "src/App";
+import Home from "@modules/home/Home";
 
 const routes = [
 	{
 		path: "/",
-		element: <App />
+		element: <Home />
 	},
 ];
 
