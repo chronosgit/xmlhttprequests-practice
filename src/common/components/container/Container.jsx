@@ -1,6 +1,6 @@
 import componentTypes from "@common/utils/containerTypes";
 
-const Container = ({maxWidth, type = "div", children}) => {
+const Container = ({maxWidth, type = "div", style = {}, children}) => {
 
 	if(maxWidth == null) {
 		return;
@@ -9,7 +9,7 @@ const Container = ({maxWidth, type = "div", children}) => {
 	let ContainerType = componentTypes[type] || <div></div>;
 
 	return (
-		<ContainerType>
+		<ContainerType style={style}>
 			{children}
 		</ContainerType>
 	);	
