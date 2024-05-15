@@ -31,10 +31,11 @@ img {
 }
 
 button {
+	font-family: "Jacquard";
 	cursor: pointer;
 }
 
-.button-normalize {
+.button_normalize {
 	background: none;
 	border: none;
 }
