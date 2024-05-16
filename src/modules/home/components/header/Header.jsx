@@ -16,14 +16,30 @@ const Header = () => {
 		borderBlockEnd: "1px solid var(--color_purple)",
 	};
 
+	const btnsStyles = {
+		display: "flex",
+		justifyContent: "space-between",
+		alignItems: "center",
+		gap: "1.5rem",
+	};
+
 	return (
 		<Container type="header" style={headerStyles}>
 			<Logo style={{maxWidth: "5rem"}} />
 			
-			<FetchButton
-				isLoading={isFetchActive} 
-				onClick={getPosts} 
-			/>
+			<Container style={btnsStyles}>
+				<FetchButton
+					text="Modern Fetch"
+					isLoading={isFetchActive}
+					onClick={() => getPosts(false)} 
+				/>
+
+				<FetchButton
+					text="XHR Fetch"
+					isLoading={isFetchActive} 
+					onClick={() => getPosts(true)} 
+				/>
+			</Container>
 		</Container>
 	);
 };
