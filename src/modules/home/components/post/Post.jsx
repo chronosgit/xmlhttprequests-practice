@@ -1,7 +1,7 @@
 import styles from "./post.module.css";
 
 const Post = ({post}) => {
-	console.log(post);
+	
 	if(post == null || !post.title || !post.body) {
 		return;
 	}
