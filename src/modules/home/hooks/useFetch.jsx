@@ -4,26 +4,46 @@ const useFetch = () => {
 
 	const [isFetchActive, setFetchActive] = useState(false);
 
-	const fetch = () => {
+	const xhrFetch = () => {
 		if(isFetchActive) {
 			return;
 		}
 
 		setFetchActive(true);
 
-		// TODO: fetch logic using XMLHttpRequest here
+		const baseUrl = import.meta.env.VITE_BASE_URL;
+		const xhr = new XMLHttpRequest();
+		xhr.open("GET", baseUrl + `/posts?_limit=${7}`);
+		xhr.responseType = "json";
 
-		// WARN: the following code is dummy logic to test spinners type shit
-		console.log("Fetching...")
+		return new Promise((resolve, reject) => {
+      xhr.onload = () => {
+        setFetchActive(false);
+        resolve(xhr.response);
+      };
 
-		setTimeout(() => {
-			setFetchActive(false);
-			console.log("Fetch has ended!")
-		}, 3000);
+      xhr.onerror = () => {
+        setFetchActive(false);
+        reject(new Error("Fetch request resulted in error"));
+      };
+
+      xhr.send();
+    });
+	};
+
+	const modernFetch = () => {
+		if(isFetchActive) {
+			return;
+		}
+
+		setFetchActive(true);
+
+		const baseUrl = import.meta.env.VITE_BASE_URL;
+		return fetch(baseUrl + `/posts?_limit=${7}`);
 	};
 
 	return {
-		isFetchActive, fetch,
+		isFetchActive, setFetchActive, xhrFetch, modernFetch
 	};
 };
 

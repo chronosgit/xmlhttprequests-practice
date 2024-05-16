@@ -4,9 +4,9 @@ import Container from "@common/components/container/Container";
 import Logo from "@common/components/logo/Logo";
 import FetchButton from "../fetch_button/FetchButton";
 
-const HomeHeader = () => {
+const Header = () => {
 
-	const {isFetchActive, fetch} = useContext(PostsContext);
+	const {isFetchActive, getPosts} = useContext(PostsContext);
 
 	const headerStyles = {
 		display: "flex",
@@ -16,16 +16,32 @@ const HomeHeader = () => {
 		borderBlockEnd: "1px solid var(--color_purple)",
 	};
 
+	const btnsStyles = {
+		display: "flex",
+		justifyContent: "space-between",
+		alignItems: "center",
+		gap: "1.5rem",
+	};
+
 	return (
 		<Container type="header" style={headerStyles}>
 			<Logo style={{maxWidth: "5rem"}} />
 			
-			<FetchButton
-				isLoading={isFetchActive} 
-				onClick={fetch} 
-			/>
+			<Container style={btnsStyles}>
+				<FetchButton
+					text="Modern Fetch"
+					isLoading={isFetchActive}
+					onClick={() => getPosts(false)} 
+				/>
+
+				<FetchButton
+					text="XHR Fetch"
+					isLoading={isFetchActive} 
+					onClick={() => getPosts(true)} 
+				/>
+			</Container>
 		</Container>
 	);
 };
 
-export default HomeHeader;
+export default Header;

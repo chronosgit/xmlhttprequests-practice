@@ -2,9 +2,9 @@ import mergeClassnames from "@common/utils/mergeClassnames";
 import styles from "./fetch_button.module.css";
 import { ClockLoader } from "react-spinners";
 
-const FetchButton = ({onClick, isLoading = false}) => {
+const FetchButton = ({text, onClick, isLoading = false}) => {
 
-	if(onClick == null) {
+	if(onClick == null || !text) {
 		return;
 	}
 
@@ -29,7 +29,7 @@ const FetchButton = ({onClick, isLoading = false}) => {
 					className={mergeClassnames("button_normalize", styles.button)}
 					onClick={onClick}
 				>
-					Fetch
+					{text}
 				</button>
 		}
 	</>

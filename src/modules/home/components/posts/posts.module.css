@@ -1,0 +1,27 @@
+.posts {
+	max-height: 85vh;
+	overflow: auto;
+
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.posts::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+.posts::-webkit-scrollbar-track {
+  background: #cecece;
+	border-radius: 1rem;
+}
+
+.posts::-webkit-scrollbar-thumb {
+  background: #929292;
+  border-radius: 1rem;
+}
+
+.posts::-webkit-scrollbar-thumb:hover {
+  background: rgb(65, 64, 64)292;
+}
