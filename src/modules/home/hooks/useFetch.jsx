@@ -11,15 +11,24 @@ const useFetch = () => {
 
 		setFetchActive(true);
 
-		// TODO: fetch logic using XMLHttpRequest here
+		const baseUrl = import.meta.env.VITE_BASE_URL;
+		const xhr = new XMLHttpRequest();
+		xhr.open("GET", baseUrl + `/todos?_limit=${7}`);
+		xhr.responseType = "json";
 
-		// WARN: the following code is dummy logic to test spinners type shit
-		console.log("Fetching...")
+		return new Promise((resolve, reject) => {
+      xhr.onload = () => {
+        setFetchActive(false);
+        resolve(xhr.response);
+      };
 
-		setTimeout(() => {
-			setFetchActive(false);
-			console.log("Fetch has ended!")
-		}, 3000);
+      xhr.onerror = () => {
+        setFetchActive(false);
+        reject(new Error("Fetch request resulted in error"));
+      };
+
+      xhr.send();
+    });
 	};
 
 	return {

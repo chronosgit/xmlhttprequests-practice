@@ -4,9 +4,9 @@ import Container from "@common/components/container/Container";
 import Logo from "@common/components/logo/Logo";
 import FetchButton from "../fetch_button/FetchButton";
 
-const HomeHeader = () => {
+const Header = () => {
 
-	const {isFetchActive, fetch} = useContext(PostsContext);
+	const {isFetchActive, getPosts} = useContext(PostsContext);
 
 	const headerStyles = {
 		display: "flex",
@@ -22,10 +22,10 @@ const HomeHeader = () => {
 			
 			<FetchButton
 				isLoading={isFetchActive} 
-				onClick={fetch} 
+				onClick={getPosts} 
 			/>
 		</Container>
 	);
 };
 
-export default HomeHeader;
+export default Header;

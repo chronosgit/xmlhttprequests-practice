@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import useFetch from "../hooks/useFetch";
 
 const PostsContext = createContext({});
@@ -6,9 +6,18 @@ const PostsContext = createContext({});
 const PostsContextProvider = ({children}) => {
 
 	const {isFetchActive, fetch} = useFetch();
+	const [posts, setPosts] = useState([]);
+
+	const getPosts = () => {
+		const fetcher = fetch();
+
+		fetcher.then(res => {
+			setPosts(res);
+		});
+	};
 
 	const contextVal = {
-		isFetchActive, fetch,
+		isFetchActive, posts, getPosts,
 	};
 
 	return (

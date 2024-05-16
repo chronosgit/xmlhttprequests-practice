@@ -1,5 +1,5 @@
 import Container from "@common/components/container/Container";
-import HomeHeader from "./components/home_header/HomeHeader";
+import HomeHeader from "./components/header/Header";
 import { PostsContextProvider } from "./contexts/PostsContext";
 
 const Home = () => {
@@ -12,6 +12,8 @@ const Home = () => {
 		<Container maxWidth={800} style={homeContainerStyles}>
 			<PostsContextProvider>
 				<HomeHeader />
+
+				
 			</PostsContextProvider>
 		</Container>
 	);
