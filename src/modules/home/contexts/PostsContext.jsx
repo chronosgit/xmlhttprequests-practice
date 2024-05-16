@@ -5,14 +5,32 @@ const PostsContext = createContext({});
 
 const PostsContextProvider = ({children}) => {
 
-	const {isFetchActive, fetch} = useFetch();
+	const {
+		isFetchActive, setFetchActive, 
+		xhrFetch, modernFetch
+	} = useFetch();
 	const [posts, setPosts] = useState([]);
 
-	const getPosts = () => {
-		const fetcher = fetch();
+	const getPosts = (isXhr) => {
+		const fetcher = isXhr ? xhrFetch() : modernFetch();
 
-		fetcher.then(res => {
+		fetcher
+		.then(res => {
+			if(isXhr) {
+				return res;
+			} 
+			
+			return res.json();
+		})
+		.then(res => {
 			setPosts(res);
+			
+			setFetchActive(false);
+		})
+		.catch(err => {
+			console.error(err);
+
+			setFetchActive(false);
 		});
 	};
 

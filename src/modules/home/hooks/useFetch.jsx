@@ -4,7 +4,7 @@ const useFetch = () => {
 
 	const [isFetchActive, setFetchActive] = useState(false);
 
-	const fetch = () => {
+	const xhrFetch = () => {
 		if(isFetchActive) {
 			return;
 		}
@@ -13,7 +13,7 @@ const useFetch = () => {
 
 		const baseUrl = import.meta.env.VITE_BASE_URL;
 		const xhr = new XMLHttpRequest();
-		xhr.open("GET", baseUrl + `/todos?_limit=${7}`);
+		xhr.open("GET", baseUrl + `/posts?_limit=${7}`);
 		xhr.responseType = "json";
 
 		return new Promise((resolve, reject) => {
@@ -31,8 +31,19 @@ const useFetch = () => {
     });
 	};
 
+	const modernFetch = () => {
+		if(isFetchActive) {
+			return;
+		}
+
+		setFetchActive(true);
+
+		const baseUrl = import.meta.env.VITE_BASE_URL;
+		return fetch(baseUrl + `/posts?_limit=${7}`);
+	};
+
 	return {
-		isFetchActive, fetch,
+		isFetchActive, setFetchActive, xhrFetch, modernFetch
 	};
 };
 
